@@ -17,18 +17,19 @@ class BooksApp extends React.Component {
 
   componentDidMount() {
     // get books on load
-    BooksAPI.getAll().then(booksList => 
-      {console.log("componentDidMount "+ booksList);
-      this.setState({ booksList })});
+    BooksAPI.getAll().then(booksList => {
+      this.setState({ booksList })
+    });
   }
 
+  // Callback function to update the book
   changeBookShelf = (changedBook, shelf) => {
     BooksAPI.update(changedBook, shelf).then(response => {
       // set shelf for new or updated book
       changedBook.shelf = shelf;
       // update state with changed book
       this.setState(prevState => ({
-        books: prevState.books
+        booksList: prevState.booksList
           // remove updated book from array
           .filter(book => book.id !== changedBook.id)
           // add updated book to array

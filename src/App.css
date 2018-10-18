@@ -138,6 +138,8 @@ body, .app {
   height: 200px;
   display: flex;
   align-items: flex-end;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  background-size: cover;
 }
 
 .book-shelf-changer {

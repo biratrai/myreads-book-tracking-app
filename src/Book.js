@@ -22,14 +22,10 @@ class Book extends Component {
     return (
       <li>
         <div className="book">
-          <div className="book-top">
-            <div
-              className="book-cover"
-              style={{ backgroundImage: `url(${bookImage})`,
-              backgroundSize: 'cover',
-              overflow: 'hidden' }}
+          <div className="book-top"
+              style={{ backgroundImage: `url(${bookImage})`}}
             />
-          </div>
+          
           <div className="book-title">{title}</div>
           {/* Check for authors and render each on separate line if exist*/
           book.authors &&

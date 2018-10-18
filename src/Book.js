@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import defaultCover from './images/book-placeholder.png'
+import ChangeBookShelf from './ChangeBookShelf';
 
 class Book extends Component {
   static propTypes = {
@@ -12,7 +13,7 @@ class Book extends Component {
   render() {
     const { book, booksList, changeBookShelf } = this.props;
 
-    // add fallbacks for missing cover images and title
+    // Using the default cover for book and default title when unavailable
     const bookImage =
       book.imageLinks && book.imageLinks.thumbnail
         ? book.imageLinks.thumbnail
@@ -23,15 +24,15 @@ class Book extends Component {
       <li>
         <div className="book">
           <div className="book-top"
-              style={{ backgroundImage: `url(${bookImage})`}}
-            />
-          
-          <div className="book-title">{title}</div>
-          {/* Check for authors and render each on separate line if exist*/
-          book.authors &&
+              style={{ backgroundImage: `url(${ bookImage })` }}>
+            <ChangeBookShelf book={ book } booksList={ booksList } changeBookShelf={ changeBookShelf } />
+          </div>
+           
+          <div className="book-title">{ title }</div>
+          { book.authors &&
             book.authors.map((author, index) => (
-              <div className="book-authors" key={index}>
-                {author}
+              <div className="book-authors" key={ index }>
+                { author }
               </div>
             ))}
         </div>

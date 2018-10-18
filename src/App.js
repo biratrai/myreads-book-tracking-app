@@ -2,6 +2,7 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import BookShelf from './BookShelf'
 import './App.css'
+import BookContainer from './BookContainer';
 
 class BooksApp extends React.Component {
   state = {
@@ -56,28 +57,7 @@ class BooksApp extends React.Component {
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
-            <div className="list-books-content">
-              <div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Currently Reading</h2>
-                  <div className="bookshelf-books">
-                    <BookShelf books={currentlyReadingBooks}/>
-                  </div>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Want to Read</h2>
-                  <div className="bookshelf-books">
-                  <BookShelf books={wantToReadBooks}/>
-                  </div>
-                </div>
-                <div className="bookshelf">
-                  <h2 className="bookshelf-title">Read</h2>
-                  <div className="bookshelf-books">
-                  <BookShelf books={readBooks}/>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <BookContainer books={this.state.books}/>
             <div className="open-search">
               <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
             </div>

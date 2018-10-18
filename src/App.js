@@ -1,6 +1,5 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
-import BookShelf from './BookShelf'
 import './App.css'
 import BookContainer from './BookContainer';
 
@@ -13,22 +12,32 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: false,
-    books: []
+    booksList: []
   }
 
   componentDidMount() {
     // get books on load
-    BooksAPI.getAll().then(books => 
-      {console.log("componentDidMount "+ books);
-      this.setState({ books })});
-    
+    BooksAPI.getAll().then(booksList => 
+      {console.log("componentDidMount "+ booksList);
+      this.setState({ booksList })});
   }
 
-  render() {
-    const currentlyReadingBooks = this.state.books.filter(book => book.shelf === "currentlyReading");
-    const wantToReadBooks = this.state.books.filter(book => book.shelf === "wantToRead");
-    const readBooks = this.state.books.filter(book => book.shelf === "read");
+  changeBookShelf = (changedBook, shelf) => {
+    BooksAPI.update(changedBook, shelf).then(response => {
+      // set shelf for new or updated book
+      changedBook.shelf = shelf;
+      // update state with changed book
+      this.setState(prevState => ({
+        books: prevState.books
+          // remove updated book from array
+          .filter(book => book.id !== changedBook.id)
+          // add updated book to array
+          .concat(changedBook)
+      }));
+    });
+  };
 
+  render() {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -57,7 +66,7 @@ class BooksApp extends React.Component {
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
-            <BookContainer books={this.state.books}/>
+            <BookContainer booksList={this.state.booksList} changeBookShelf={ this.changeBookShelf }/>
             <div className="open-search">
               <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
             </div>

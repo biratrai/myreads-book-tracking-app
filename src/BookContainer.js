@@ -4,29 +4,29 @@ import BookShelf from './BookShelf';
 
 class BookContainer extends Component {
   static propTypes = {
-    books: PropTypes.array.isRequired,
-    changeShelf: PropTypes.func.isRequired
+    booksList: PropTypes.array.isRequired,
+    changeBookShelf: PropTypes.func.isRequired
   };
 
   state = { shelfChange: false };
 
   render() {
-    const { books, changeShelf } = this.props;
-    const shelfTypes = [
-      { type: 'currentlyReading', title: 'Currently Reading' },
-      { type: 'wantToRead', title: 'Want to Read' },
-      { type: 'read', title: 'Read' }
+    const { booksList, changeBookShelf } = this.props;
+    const shelfList = [
+      { shelfType: 'currentlyReading', shelfName: 'Currently Reading' },
+      { shelfType: 'wantToRead', shelfName: 'Want to Read' },
+      { shelfType: 'read', shelfName: 'Read' }
     ];
 
     return (
       <div className="list-books-content">
-        {shelfTypes.map((shelf, index) => {
-          const shelfBooks = books.filter(book => book.shelf === shelf.type);
+        { shelfList.map((shelf, index) => {
+          const shelfBooks = booksList.filter(book => book.shelf === shelf.shelfType);
           return (
-            <div className="bookshelf" key={index}>
-              <h2 className="bookshelf-title">{shelf.title}</h2>
+            <div className="bookshelf" key={ index }>
+              <h2 className="bookshelf-title">{ shelf.shelfName }</h2>
               <div className="bookshelf-books">
-                <BookShelf books={shelfBooks} changeShelf={changeShelf} />
+                <BookShelf booksList={ shelfBooks } changeBookShelf={ changeBookShelf } />
               </div>
             </div>
           );

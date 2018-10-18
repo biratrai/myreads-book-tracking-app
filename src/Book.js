@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import defaultCover from './icons/add.svg'
+import defaultCover from './images/book-placeholder.png'
 
 class Book extends Component {
   static propTypes = {
     book: PropTypes.object.isRequired,
-    books: PropTypes.array.isRequired,
-    changeShelf: PropTypes.func.isRequired
+    booksList: PropTypes.array.isRequired,
+    changeBookShelf: PropTypes.func.isRequired
   };
 
   render() {
-    const { book, books, changeShelf } = this.props;
+    const { book, booksList, changeBookShelf } = this.props;
 
     // add fallbacks for missing cover images and title
-    const coverImg =
+    const bookImage =
       book.imageLinks && book.imageLinks.thumbnail
         ? book.imageLinks.thumbnail
         : defaultCover;
@@ -25,7 +25,9 @@ class Book extends Component {
           <div className="book-top">
             <div
               className="book-cover"
-              style={{ backgroundImage: `url(${coverImg})` }}
+              style={{ backgroundImage: `url(${bookImage})`,
+              backgroundSize: 'cover',
+              overflow: 'hidden' }}
             />
           </div>
           <div className="book-title">{title}</div>

@@ -36,7 +36,7 @@ class BooksApp extends React.Component {
    
   render() {
     const Search = ({ history }) => (
-      <SearchBook bookList={ this.state.bookList } changeShelf={ this.changeShelf } />
+      <SearchBook booksList={ this.state.booksList } changeBookShelf={ this.changeBookShelf } />
     )
 
     const MainBookContainer = () => (

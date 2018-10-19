@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import defaultCover from './images/book-placeholder.png'
 import ChangeBookShelf from './ChangeBookShelf';
+import Card from '@material-ui/core/Card';
 
 class Book extends Component {
   static propTypes = {
@@ -22,20 +23,22 @@ class Book extends Component {
 
     return (
       <li>
-        <div className="book">
-          <div className="book-top"
-              style={{ backgroundImage: `url(${ bookImage })` }}>
-            <ChangeBookShelf book={ book } booksList={ booksList } changeBookShelf={ changeBookShelf } />
-          </div>
-           
-          <div className="book-title">{ title }</div>
-          { book.authors &&
-            book.authors.map((author, index) => (
-              <div className="book-authors" key={ index }>
-                { author }
-              </div>
-            ))}
-        </div>
+        <Card>
+            <div className="book">
+            <div className="book-top"
+                style={{ backgroundImage: `url(${ bookImage })` }}>
+                <ChangeBookShelf book={ book } booksList={ booksList } changeBookShelf={ changeBookShelf } />
+            </div>
+            
+            <div className="book-title">{ title }</div>
+            { book.authors &&
+                book.authors.map((author, index) => (
+                <div className="book-authors" key={ index }>
+                    { author }
+                </div>
+                ))}
+            </div>
+        </Card>
       </li>
     );
   }

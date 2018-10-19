@@ -57,7 +57,7 @@ class BooksApp extends React.Component {
           <Route path="/search"
             render={ Search }
           />
-          <Route exact path="/home"
+          <Route exact path="/"
             render= { MainBookContainer }
             />
         </Switch>

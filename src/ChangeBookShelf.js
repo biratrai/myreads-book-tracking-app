@@ -22,7 +22,8 @@ class ChangeBookShelf extends Component {
 
     render() {
         const { book, booksList } = this.props;
-        
+        console.log('book '+ book);
+        console.log('booklist '+ booksList);
         let currentShelf = this.getShelfName(booksList, book);
 
         return (

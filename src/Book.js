@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import defaultCover from './images/book-placeholder.png'
 import ChangeBookShelf from './ChangeBookShelf';
 import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import CardMedia from '@material-ui/core/CardMedia';
 
 class Book extends Component {
-  static propTypes = {
-    book: PropTypes.object.isRequired,
-    booksList: PropTypes.array.isRequired,
-    changeBookShelf: PropTypes.func.isRequired
-  };
-
+    
   render() {
+    
     const { book, booksList, changeBookShelf } = this.props;
 
     // Using the default cover for book and default title when unavailable
@@ -23,25 +24,34 @@ class Book extends Component {
 
     return (
       <li>
-        <Card>
-            <div className="book">
-            <div className="book-top"
-                style={{ backgroundImage: `url(${ bookImage })` }}>
-                <ChangeBookShelf book={ book } booksList={ booksList } changeBookShelf={ changeBookShelf } />
-            </div>
+        <Card style={{ maxWidth: 345 }}>
+            <CardMedia
+                style={{ height: 200, objectFit: 'cover' }}
+                image={ bookImage }>
+            </CardMedia>
             
-            <div className="book-title">{ title }</div>
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">{ title }</Typography>
+            </CardContent>
             { book.authors &&
                 book.authors.map((author, index) => (
-                <div className="book-authors" key={ index }>
+                    <CardContent>
+                    <Typography component="p">
                     { author }
-                </div>
+                    </Typography>
+                </CardContent>
                 ))}
-            </div>
+        <ChangeBookShelf book={ book } booksList={ booksList } changeBookShelf={ changeBookShelf } />
         </Card>
       </li>
     );
   }
 }
 
-export default Book;
+Book.propTypes = {
+    book: PropTypes.object.isRequired,
+    booksList: PropTypes.array.isRequired,
+    changeBookShelf: PropTypes.func.isRequired
+};
+
+export default (Book);

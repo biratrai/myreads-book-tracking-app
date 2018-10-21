@@ -12,6 +12,7 @@ class ChangeBookShelf extends Component {
         this.props.changeBookShelf(this.props.book, event.target.value);
     }
   
+    // Function to get the matching shelf
     getShelfName = (booksList, book) => {
         for (let item of booksList) {
             if (item.id === book.id) {
@@ -22,8 +23,6 @@ class ChangeBookShelf extends Component {
 
     render() {
         const { book, booksList } = this.props;
-        console.log('book '+ book);
-        console.log('booklist '+ booksList);
         let currentShelf = this.getShelfName(booksList, book);
 
         return (

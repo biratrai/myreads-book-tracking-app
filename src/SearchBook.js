@@ -11,29 +11,36 @@ class SearchBook extends Component {
   };
 
   state = {
-    query: '',
+    userSearchText: '',
     searchBookList: [],
     searchError: false
   };
 
+  // Function to handle the user search text 
   getBooks = event => {
-    const query = event.target.value;
-    this.setState({ query });
+    const userSearchText = event.target.value;
+    this.setState({ userSearchText });
 
-    // if user input => run the search
-    if (query) {
-      BooksAPI.search(query.trim(), 20).then(booksList => {
-        booksList.length > 0
-          ? this.setState({ searchBookList: booksList, searchError: false })
-          : this.setState({ searchBookList: [], searchError: true });
-      });
-
-      // if query is empty => reset state to default
-    } else this.setState({ searchBookList: [], searchError: false });
+    // if user input availble fetch the data
+    if (userSearchText) {
+      this.searchBook(userSearchText);
+    } else {
+      // set search to empty state
+      this.setState({ searchBookList: [], searchError: false });
+    }
   };
 
+  // Function to get list of books when user search input is available
+  searchBook = ( userSearchText ) => {
+    BooksAPI.search(userSearchText.trim(), 20).then(booksList => {
+      booksList.length > 0
+        ? this.setState({ searchBookList: booksList, searchError: false })
+        : this.setState({ searchBookList: [], searchError: true });
+    });
+  }
+
   render() {
-    const { query, searchBookList, searchError } = this.state;
+    const { userSearchText, searchBookList, searchError } = this.state;
     const { booksList, changeBookShelf } = this.props;
 
     return (
@@ -46,7 +53,7 @@ class SearchBook extends Component {
             <input
               type="text"
               placeholder="Search by title or author"
-              value={ query }
+              value={ userSearchText }
               onChange={ this.getBooks }
             />
           </div>

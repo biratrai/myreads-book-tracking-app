@@ -11,31 +11,31 @@ class BooksApp extends React.Component {
   }
 
   componentDidMount() {
-    // get books on load
+    // get books when component is loaded
     BooksAPI.getAll().then(booksList => {
       this.setState({ booksList })
     });
   }
 
-  // Callback function to update the book
+  // Function to update the book when book shelf is changed
   changeBookShelf = (changedBook, shelf) => {
-    BooksAPI.update(changedBook, shelf).then(response => {
-      // set shelf for new or updated book
+    BooksAPI.update(changedBook, shelf)
+      .then(() => {
+      // Updating the book to new shelf
       changedBook.shelf = shelf;
-      // update state with changed book
+      // Set the state
       this.setState(prevState => ({
         booksList: prevState.booksList
-          // remove updated book from array
+          // removing the updated book
           .filter(book => book.id !== changedBook.id)
-          // add updated book to array
+          // adding the updated book 
           .concat(changedBook)
       }));
     });
   };
-
    
   render() {
-    const Search = ({ history }) => (
+    const Search = () => (
       <SearchBook booksList={ this.state.booksList } changeBookShelf={ this.changeBookShelf } />
     )
 

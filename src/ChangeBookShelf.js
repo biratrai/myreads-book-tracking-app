@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Button } from '@material-ui/core';
+import Icon from '@material-ui/core/Icon';
 
 class ChangeBookShelf extends Component {
     static propTypes = {
@@ -28,6 +30,8 @@ class ChangeBookShelf extends Component {
 
         return (
             <div className="book-shelf-changer">
+            {/* <Button variant="fab"  aria-label="Add">  */}
+                {/* <Icon>keyboard_arrow_down</Icon> */}
                 <select onChange={ this.updateShelf } defaultValue={ currentShelf }>
                 <option value="none" disabled>
                     Move to...
@@ -37,6 +41,7 @@ class ChangeBookShelf extends Component {
                 <option value="read">Read</option>
                 <option value="none">None</option>
                 </select>
+                {/* </Button> */}
             </div>
         );
     }

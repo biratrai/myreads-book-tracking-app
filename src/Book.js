@@ -8,13 +8,33 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
 
 class Book extends Component {
-    
+  
   render() {
     
     const { book, booksList, changeBookShelf } = this.props;
+    
+    const bookTopStyle = { 
+      position: 'relative',
+      height: '200px',
+      display: 'flex',
+      alignItems: 'flex-end',
+      backgroundSize: 'cover'
+    }
 
+    const bookStyle = {
+      width: '140px'
+    }
+    const bookTitleAndAuthors = {
+      fontSize: '0.8em'
+    }
+
+    const bookTitle = {
+      marginTop: '10px'
+    }
     // Using the default cover for book and default title when unavailable
     const bookImage =
       book.imageLinks && book.imageLinks.thumbnail
@@ -24,24 +44,28 @@ class Book extends Component {
 
     return (
       <li>
-        <Card style={{ maxWidth: 345 }}>
-            <CardMedia
-                style={{ height: 200, objectFit: 'cover' }}
-                image={ bookImage }>
-            </CardMedia>
-            
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">{ title }</Typography>
-            </CardContent>
-            { book.authors &&
-                book.authors.map((author, index) => (
-                    <CardContent>
-                    <Typography component="p">
-                    { author }
-                    </Typography>
-                </CardContent>
-                ))}
-        <ChangeBookShelf book={ book } booksList={ booksList } changeBookShelf={ changeBookShelf } />
+        <Card style={ bookStyle }>
+        <CardActionArea>
+          <CardMedia
+              style={ bookTopStyle}
+              image={ bookImage }>
+          </CardMedia>
+          
+          <CardContent style={ [bookTitle ,bookTitleAndAuthors]}>
+              <Typography >{ title }</Typography>
+          </CardContent>
+          { book.authors &&
+              book.authors.map((author, index) => (
+                  <CardContent style={ bookTitleAndAuthors }>
+                  <Typography component="p">
+                  { author }
+                  </Typography>
+              </CardContent>
+              ))}
+          </CardActionArea>
+          <CardActions>
+          <ChangeBookShelf book={ book } booksList={ booksList } changeBookShelf={ changeBookShelf } />
+          </CardActions>
         </Card>
       </li>
     );

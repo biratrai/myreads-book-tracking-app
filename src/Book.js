@@ -24,7 +24,7 @@ class Book extends Component {
     return (
       <li>
         <Card>
-            <div className="book">
+          <div className="book">
             <div className="book-top"
                 style={{ backgroundImage: `url(${ bookImage })` }}>
                 <ChangeBookShelf book={ book } booksList={ booksList } changeBookShelf={ changeBookShelf } />
@@ -37,7 +37,7 @@ class Book extends Component {
                     { author }
                 </div>
                 ))}
-            </div>
+          </div>
         </Card>
       </li>
     );

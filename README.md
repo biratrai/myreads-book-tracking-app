@@ -30,13 +30,13 @@ Once all of the dependencies have been installed you can launch the app by
 
 A new browser window automatically loads displaying the app. If it doesn't, navigate to [http://localhost:3000/](http://localhost:3000/) in your browser
 
-![Demo Screen](src/screenshots/app.png "Demo screen")
+![Demo Screen](src/images/app.png "Demo screen")
 
 ## How to Use the App
 
 - Books are sorted into three shelf: Currently Reading, Want to Read and Read
 - To change a book's shelf or remove a book from the shelf, click on the green button on the book cover
-  ![Change menu](src/screenshots/shelfchange.png "shelf change")
+  ![Change menu](src/images/shelfchange.png "shelf change")
 
 - To add new books or search for books, click on the + button at the bottom of the page.
   Enter an author's name or subject. Items will be returned.

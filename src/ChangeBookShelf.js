@@ -14,11 +14,13 @@ class ChangeBookShelf extends Component {
   
     // Function to get the matching shelf
     getShelfName = (booksList, book) => {
+        let defaultShelf = "none"
         for (let item of booksList) {
             if (item.id === book.id) {
-                return item.shelf;
+                defaultShelf = item.shelf;
             }
         }
+        return defaultShelf;
     }
 
     render() {
@@ -28,13 +30,13 @@ class ChangeBookShelf extends Component {
         return (
             <div className="book-shelf-changer">
                 <select onChange={ this.updateShelf } defaultValue={ currentShelf }>
-                <option value="none" disabled>
-                    Move to...
-                </option>
-                <option value="currentlyReading">Currently Reading</option>
-                <option value="wantToRead">Want to Read</option>
-                <option value="read">Read</option>
-                <option value="none">None</option>
+                    <option disabled>
+                        Move to...
+                    </option>
+                    <option value="currentlyReading">Currently Reading</option>
+                    <option value="wantToRead">Want to Read</option>
+                    <option value="read">Read</option>
+                    <option value="none">None</option>
                 </select>
             </div>
         );

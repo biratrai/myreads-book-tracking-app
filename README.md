@@ -4,7 +4,7 @@
 
 ## Project Purpose:
 
-This project was built for the Google Scholarship for Udacity FrontEnd Nanodegree Program. The project is uses [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
+This project was built for the Google Scholarship for Udacity FrontEnd Nanodegree Program. The project uses [Create React App](https://github.com/facebookincubator/create-react-app) to bootstrap the project.
 
 ## Demo of the App
 

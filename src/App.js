@@ -4,6 +4,7 @@ import './App.css'
 import BookContainer from './BookContainer';
 import { Route, BrowserRouter, Switch, Link } from 'react-router-dom';
 import SearchBook from './SearchBook'
+import PageNotFound from './PageNotFound'
 
 class BooksApp extends React.Component {
   state = {
@@ -50,6 +51,7 @@ class BooksApp extends React.Component {
       </div>
       </div>
     )
+
     return (
       <div className="app">
       <BrowserRouter>
@@ -60,6 +62,7 @@ class BooksApp extends React.Component {
           <Route exact path="/"
             render= { MainBookContainer }
             />
+        <Route component={ PageNotFound } />
         </Switch>
         </BrowserRouter>
       </div>

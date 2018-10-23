@@ -1,15 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Book from './Book';
 
-class BookShelf extends Component {
-  static propTypes = {
-    booksList: PropTypes.array.isRequired,
-    changeBookShelf: PropTypes.func.isRequired
-  };
-
-  render() {
-    const { booksList, changeBookShelf } = this.props;
+// Stateless functional Component
+const BookShelf = ({ booksList, changeBookShelf }) => {
     // Return list of Book component
     return (
       <ol className="books-grid">
@@ -23,7 +17,10 @@ class BookShelf extends Component {
         ))}
       </ol>
     );
-  }
 }
 
+BookShelf.propTypes = {
+  booksList: PropTypes.array.isRequired,
+  changeBookShelf: PropTypes.func.isRequired
+};
 export default BookShelf;
